@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 typedef struct Pessoa{
 	char nome[30];
@@ -70,6 +69,27 @@ void alterarNome(){
 }
 
 
+void excluirNome(){
+	char pesquisa[30];
+	int i, achou = 0;
+	printf("digite o nome para pesquisa: ");
+	scanf("%s",&pesquisa);
+	
+
+	for(i=0;i<tam;i++){
+		if(strcmp(vetor[i].nome,pesquisa)==0){
+			strcpy(vetor[i].nome,vetor[tam-1].nome);
+			tam--;
+			achou = 1;
+			break;
+		}
+	}
+	if(achou == 0){
+		printf("nao existe esse nome pesquisado para excluir\n");
+	}
+}
+
+
 void abrirArquivo(){
 	if(arquivo = fopen("arquivo.txt","r")){
 		while((fscanf(arquivo,"%s",vetor[tam].nome))!=EOF){
@@ -98,8 +118,8 @@ int main(){
 	int op;
 	abrirArquivo();
 	do{
-		printf("1-inserir\n2-imprimir\n3-pesquisar\n4-alterar nome\n0-sair\n");
-		scanf("%d",&op);
+		printf("1-inserir\n2-imprimir\n3-pesquisar\n4-alterar nome\n5-excluir\n0-sair\n");
+		scanf("%d",&op); 
 		if(op == 1){
 			inserir();
 		}else if(op==2){
@@ -108,6 +128,8 @@ int main(){
 			pesquisar();
 		}else if(op==4){
 			alterarNome();
+		}else if(op==5){
+			excluirNome();
 		}
 					
 	}while(op!=0);
