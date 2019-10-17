@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+typedef struct Pessoa{
+	char nome[30];
+	int idade;
+}pessoa;
+
+pessoa vetor[100];
+int tam = 0;
+FILE *arquivo;
+
+
+void inserir(){
+	printf("digite um nome: ");
+	scanf("%s", &vetor[tam].nome);
+	tam++;
+}
+
+void pesquisar(){
+	char pesquisa[30];
+	int i,j;
+	printf("digite o nome para pesquisa: ");
+	scanf("%s",&pesquisa);
+	
+
+	for(i=0;i<tam;i++){
+		if(strcmp(vetor[i].nome,pesquisa)==0){
+			printf("nome existe");
+		}
+	}
+}
+
+
+void imprimir(){
+	int i;
+	printf("\n---------------------------\n");
+	for(i=0;i<tam;i++){
+		printf( "- %s\n", vetor[i].nome);
+	}
+		printf("---------------------------\n");
+}
+
+
+void abrirArquivo(){
+	if(arquivo = fopen("arquivo.txt","r")){
+		while((fscanf(arquivo,"%s",vetor[tam].nome))!=EOF){
+			tam++;
+		}
+	}else{
+		printf("erro");
+	}
+}
+
+
+void salvarArquivo(){
+	if(arquivo = fopen("arquivo.txt","w")){	
+		int i;
+		for(i=0;i<tam;i++){
+			fprintf(arquivo, "%s \n", vetor[i].nome);
+		}
+		//fprintf(arquivo, "%s","raifran");
+		fclose(arquivo);
+	}else{
+		printf("erro");
+	}
+}
+
+int main(){
+	int op;
+	abrirArquivo();
+	do{
+		printf("1-inserir\n2-imprimir\n3-pesquisar\n0-sair\n");
+		scanf("%d",&op);
+		if(op == 1){
+			inserir();
+		}else if(op==2){
+			imprimir();
+		}else if(op==3){
+			pesquisar();
+		}
+		
+			
+	}while(op!=0);
+	
+	
+	salvarArquivo();
+	
+	return 0;
+	
+}
