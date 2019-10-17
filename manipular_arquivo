@@ -21,15 +21,20 @@ void inserir(){
 
 void pesquisar(){
 	char pesquisa[30];
-	int i,j;
+	int i, achou = 0;
 	printf("digite o nome para pesquisa: ");
 	scanf("%s",&pesquisa);
 	
 
 	for(i=0;i<tam;i++){
 		if(strcmp(vetor[i].nome,pesquisa)==0){
-			printf("nome existe");
+			printf("nome existe\n");
+			achou = 1;
+			break;
 		}
+	}
+	if(achou == 0){
+		printf("nao existe essa merda no arquivo\n");
 	}
 }
 
