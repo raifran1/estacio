@@ -34,7 +34,7 @@ void pesquisar(){
 		}
 	}
 	if(achou == 0){
-		printf("nao existe essa merda no arquivo\n");
+		printf("nao existe essa nome no arquivo\n");
 	}
 }
 
@@ -46,6 +46,27 @@ void imprimir(){
 		printf( "- %s\n", vetor[i].nome);
 	}
 		printf("---------------------------\n");
+}
+
+
+void alterarNome(){
+	char pesquisa[30];
+	int i, achou = 0;
+	printf("digite o nome para pesquisa: ");
+	scanf("%s",&pesquisa);
+	
+
+	for(i=0;i<tam;i++){
+		if(strcmp(vetor[i].nome,pesquisa)==0){
+			printf("digite um nome: ");
+			scanf("%s", &vetor[i].nome);
+			achou = 1;
+			break;
+		}
+	}
+	if(achou == 0){
+		printf("nao existe esse nome pesquisado para alterar\n");
+	}
 }
 
 
@@ -77,7 +98,7 @@ int main(){
 	int op;
 	abrirArquivo();
 	do{
-		printf("1-inserir\n2-imprimir\n3-pesquisar\n0-sair\n");
+		printf("1-inserir\n2-imprimir\n3-pesquisar\n4-alterar nome\n0-sair\n");
 		scanf("%d",&op);
 		if(op == 1){
 			inserir();
@@ -85,9 +106,10 @@ int main(){
 			imprimir();
 		}else if(op==3){
 			pesquisar();
+		}else if(op==4){
+			alterarNome();
 		}
-		
-			
+					
 	}while(op!=0);
 	
 	
