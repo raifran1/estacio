@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* file > new > project > (escolher opção (C Project // console application)) */
 
 typedef struct Pessoa{
 	char nome[30];
